@@ -104,12 +104,13 @@ public class Part1 {
         int countG=0;
         int countC=0;
         float CGratio=0;
+       
         while(true)
         {
-            if(dna.indexOf("g",indexG)!=-1)
+            if(dna.indexOf("G",indexG)!=-1)
             {
                 countG=countG+1;
-                indexG=dna.indexOf("g",indexG)+1;
+                indexG=dna.indexOf("G",indexG)+1;
                 
            }
         else{
@@ -119,10 +120,10 @@ public class Part1 {
     
         while(true)
         {
-             if(dna.indexOf("c",indexC)!=-1)
+             if(dna.indexOf("C",indexC)!=-1)
             {
                 countC=countC+1;
-                indexC=dna.indexOf("c",indexC)+1;
+                indexC=dna.indexOf("C",indexC)+1;
                 
            }
         else{
@@ -131,6 +132,9 @@ public class Part1 {
         }
        
         }
+        
+      
+        
         int CG=countG+countC;
         float CGf=CG;
         float length=dna.length();
@@ -151,6 +155,9 @@ public class Part1 {
    int LarLen=0;
    int count =0;
    double thes=0.35;
+   int CTGcount=0;
+   int CTGindex=0;
+   
    
      for(String s:sr.data())
      {
@@ -191,6 +198,15 @@ public class Part1 {
     {
         count = count+1;
     }
+    for(String s:sr.data())
+    {
+        if(s.indexOf("CTG",CTGindex)!=-1)
+        {
+            CTGcount=CTGcount+1;
+            CTGindex=(s.indexOf("CTG",CTGindex))+("CTG".length());
+        }
+    }
+    System.out.println("CTG count: "+CTGcount);
     System.out.println("Largest length: "+LarLen);
     System.out.println("Genes: "+count);
     }
@@ -217,7 +233,7 @@ public class Part1 {
     
     public void testProcessGenes()
     {
-        FileResource fr = new FileResource("brca1line.fa");
+        FileResource fr = new FileResource("GRch38dnapart.fa");
         String dna = fr.asString();
         dna=dna.toUpperCase();
         System.out.println(dna);
