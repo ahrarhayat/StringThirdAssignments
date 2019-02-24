@@ -198,17 +198,30 @@ public class Part1 {
     {
         count = count+1;
     }
-    for(String s:sr.data())
-    {
-        if(s.indexOf("CTG",CTGindex)!=-1)
-        {
-            CTGcount=CTGcount+1;
-            CTGindex=(s.indexOf("CTG",CTGindex))+("CTG".length());
-        }
-    }
-    System.out.println("CTG count: "+CTGcount);
+    
     System.out.println("Largest length: "+LarLen);
     System.out.println("Genes: "+count);
+    }
+    public int countCTG(FileResource fr)
+    {
+        
+        String dna = fr.asString();
+        dna=dna.toUpperCase();
+        int CTGindex=0;
+        int CTGcount=0;
+        while(true)
+        {
+           if(dna.indexOf("CTG",CTGindex)!=-1)
+           { CTGcount=CTGcount+1;
+             CTGindex=dna.indexOf("CTG",CTGindex)+3;
+               
+            }
+            else 
+            {
+                break;
+            }
+        }
+        return  CTGcount;
     }
 
   //  public void testGetAllGenes()
@@ -240,6 +253,10 @@ public class Part1 {
         StorageResource genes = new StorageResource();
         genes=getAllGenes(dna);
         processGenes(genes);
+        int CTG=countCTG(fr);
+        System.out.println("CTG count: "+ CTG);
+        
+        
     }
     
     public void testOn(String dna)
